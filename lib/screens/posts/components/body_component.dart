@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/config/AppConfig.dart';
+import 'package:flutter_blog/config/AppRoutes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BodyComponentPost extends StatefulWidget {
@@ -30,7 +31,11 @@ class _BodyComponentPostState extends State<BodyComponentPost> {
 					children: <Widget>[
 					  FlatButton(
 					  child: const Text('DETALHES'),
-					  onPressed: () { /* ... */ },
+					  onPressed: () {
+						Future.delayed(Duration(seconds: 3),(){
+						  Navigator.of(context).pushReplacementNamed(AppRoutes.post);
+						});
+					  },
 					  ),
 					  const SizedBox(width: 8),
 					],
