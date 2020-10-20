@@ -1,6 +1,6 @@
 # flutter_blog
 
-A new Flutter application.
+Apliação Flutter para Estudo
 
 ## Getting Started
 
