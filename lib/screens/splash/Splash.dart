@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/config/AppConfig.dart';
-import 'package:flutter_blog/config/AppRoutes.dart';
 import 'package:flutter_blog/screens/login/components/background_component.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_blog/stores/login/login_store.dart';
+
 
 class Splash extends StatefulWidget {
   @override
@@ -10,13 +9,16 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+
+  LoginStore _loginStore = LoginStore();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-	Future.delayed(Duration(seconds: 3),(){
-	  Navigator.of(context).pushReplacementNamed(AppRoutes.login);
-	});
+	_loginStore.teste();
+	// Future.delayed(Duration(seconds: 3),(){
+	//   Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+	// });
 
   }
   @override
