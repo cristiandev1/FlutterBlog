@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blog/config/AppConfig.dart';
 import 'package:flutter_blog/config/AppRoutes.dart';
 import 'package:flutter_blog/screens/login/components/background_component.dart';
+import 'package:flutter_blog/stores/login/login_store.dart';
+import 'package:flutter_blog/stores/user/user_store.dart';
 import 'package:flutter_blog/widgets/rounded_button.dart';
 import 'package:flutter_blog/widgets/rounded_input_field.dart';
 import 'package:flutter_blog/widgets/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
 
 class BodyComponent extends StatelessWidget {
+  final _loginStore = GetIt.I.get<LoginStore>();
+  final _userStore = GetIt.I.get<UserStore>();
+
   @override
   Widget build(BuildContext context) {
 	Size size = MediaQuery.of(context).size;
@@ -27,17 +33,20 @@ class BodyComponent extends StatelessWidget {
 			),
 			RoundedInputField(
 			  hintText: "Digite seu Email",
-			  onChanged: (value) {},
+			  onChanged: (value) => _loginStore.setEmail(value),
 			),
 			RoundedPasswordField(
-			  onChanged: (value) {},
+			  onChanged: (value) => _loginStore.setPassword(value),
 			),
 			RoundedButton(
 			  text: "ENTRAR",
-			  onpress: () {
-				Future.delayed(Duration(seconds: 3),(){
-				  Navigator.of(context).pushReplacementNamed(AppRoutes.posts);
-				});
+			  onpress: () async{
+			    bool res = await _loginStore.login();
+			    if(res){
+				 Future.delayed(Duration(seconds: 3),(){
+				   Navigator.of(context).pushReplacementNamed(AppRoutes.posts);
+				 });
+				}
 			  },
 			),
 			SizedBox(height: size.height * 0.03),
