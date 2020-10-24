@@ -22,8 +22,8 @@ class _BottomNavigationBarComponentState extends State<BottomNavigationBarCompon
 	  onTap: (value){setState(() => _currentIndex = value);},
 	  items: [
 		BottomNavigationBarItem(
-		  title: Text('Categorias'),
-		  icon: Icon(Icons.favorite),
+		  title: Text('Postagens'),
+		  icon: Icon(Icons.list),
 		),
 		BottomNavigationBarItem(
 		  title: Text('Pesquisar'),

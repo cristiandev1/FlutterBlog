@@ -25,19 +25,18 @@ class _BodyComponentPostState extends State<BodyComponentPost> {
 			physics: NeverScrollableScrollPhysics(),
 			itemCount: _user.user.postagens.length,
 			itemBuilder: (_,index){
-			  print('${_user.user.postagens[index].titulo}');
 			  return InkWell(
 				child: Card(
 				  clipBehavior: Clip.antiAlias,
 				  child: Column(
 					mainAxisSize: MainAxisSize.min,
 					children: <Widget>[
-
 					  ListTile(
 						//leading: Icon(FontAwesomeIcons.info, size: 50,),
 						title: Text('${_user.user.postagens[index].titulo}', style: TextStyle(fontSize: 20),),
 						subtitle: Text('${_user.user.postagens[index].assunto}', style: TextStyle(fontSize: 16),),
 					  ),
+					  SizedBox(height: 10,),
 					  Row(
 						mainAxisAlignment: MainAxisAlignment.end,
 						children: <Widget>[

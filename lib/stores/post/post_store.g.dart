@@ -24,6 +24,14 @@ mixin _$PostStore on _PostStore, Store {
     });
   }
 
+  final _$createAsyncAction = AsyncAction('_PostStore.create');
+
+  @override
+  Future<bool> create({int idCategory, String title, dynamic description}) {
+    return _$createAsyncAction.run(() => super.create(
+        idCategory: idCategory, title: title, description: description));
+  }
+
   @override
   String toString() {
     return '''

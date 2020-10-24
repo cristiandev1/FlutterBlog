@@ -1,7 +1,9 @@
 import 'package:flutter_blog/interfaces/ClientHttpInterface.dart';
 import 'package:flutter_blog/repositories/login_repository.dart';
+import 'package:flutter_blog/repositories/post_repository.dart';
 import 'package:flutter_blog/repositories/splash_repository.dart';
 import 'package:flutter_blog/services/http_service/HttpRequestService.dart';
+import 'package:flutter_blog/stores/categories/category_store.dart';
 import 'package:flutter_blog/stores/login/login_store.dart';
 import 'package:flutter_blog/stores/post/post_store.dart';
 import 'package:flutter_blog/stores/splash/splash_store.dart';
@@ -19,8 +21,10 @@ class Injectors{
 	GetIt.I.registerLazySingleton<LoginStore>(() => LoginStore());
 	GetIt.I.registerLazySingleton<UserStore>(() => UserStore());
 	GetIt.I.registerLazySingleton<PostStore>(() => PostStore());
+	GetIt.I.registerLazySingleton<CategoryStore>(() => CategoryStore());
 
 	GetIt.I.registerLazySingleton<LoginRepository>(() => LoginRepository());
 	GetIt.I.registerLazySingleton<SplashRepository>(() => SplashRepository());
+	GetIt.I.registerLazySingleton<PostRepository>(() => PostRepository());
   }
 }

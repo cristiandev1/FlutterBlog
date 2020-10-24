@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/Injectos.dart';
+import 'package:flutter_blog/theme/ThemeDefault.dart';
 import 'package:get/route_manager.dart';
 import 'config/AppRoutes.dart';
 import 'dart:io';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeDefault.themeDataDefault(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       initialRoute: AppRoutes.splashScreen,
