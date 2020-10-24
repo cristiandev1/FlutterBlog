@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/config/AppRoutes.dart';
 import 'package:flutter_blog/screens/login/components/background_component.dart';
+import 'package:flutter_blog/stores/splash/splash_store.dart';
 
 
 class Splash extends StatefulWidget {
@@ -10,14 +11,22 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
 
+  SplashStore splashStore = SplashStore();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-	Future.delayed(Duration(seconds: 3),(){
-	  Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+	splashStore.splash().then((result) {
+	  if(result){
+		Future.delayed(Duration(seconds: 2),(){
+		  Navigator.of(context).pushReplacementNamed(AppRoutes.posts);
+		});
+	  }else{
+		Future.delayed(Duration(seconds: 2),(){
+		  Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+		});
+	  }
 	});
-
   }
   @override
   Widget build(BuildContext context) {

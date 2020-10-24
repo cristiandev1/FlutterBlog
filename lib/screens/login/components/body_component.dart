@@ -43,9 +43,7 @@ class BodyComponent extends StatelessWidget {
 			  onpress: () async{
 			    bool res = await _loginStore.login();
 			    if(res){
-				 Future.delayed(Duration(seconds: 3),(){
-				   Navigator.of(context).pushReplacementNamed(AppRoutes.posts);
-				 });
+				  print("aqui");
 				}
 			  },
 			),

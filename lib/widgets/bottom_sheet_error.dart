@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/screens/constants.dart';
 import 'package:get/get.dart';
 
 class BottomSheetError extends StatelessWidget {
@@ -9,7 +10,7 @@ class BottomSheetError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 	return Container(
-	  color: Color.fromRGBO(100, 0, 0, 1.0),
+	  color: kPrimaryColor,
 	  child: Padding(padding: EdgeInsets.symmetric(vertical: 13, horizontal: 20),
 		child: Row(
 		  mainAxisSize: MainAxisSize.min,

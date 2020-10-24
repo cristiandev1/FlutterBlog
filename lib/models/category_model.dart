@@ -1,5 +1,5 @@
 class CategoryModel {
-  String idCategoria;
+  int idCategoria;
   String nome;
   String status;
 
@@ -11,7 +11,7 @@ class CategoryModel {
   }
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
-	idCategoria = json['id_categoria'];
+	idCategoria = int.parse(json['id_categoria']);
 	nome = json['nome'];
 	status = json['status'];
   }

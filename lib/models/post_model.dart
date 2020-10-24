@@ -1,49 +1,46 @@
 class PostModel {
-  String idPost;
-  String idUsuario;
-  String idBlog;
-  String idCategoria;
+  int idPost;
+  int idCategoria;
   String titulo;
   String assunto;
   String dataPostagem;
-  String ativo;
+  bool ativo;
+  String nomeCategoria;
 
   PostModel(
-	  {this.idPost,
-		this.idUsuario,
-		this.idBlog,
+	  {
+		this.idPost,
 		this.idCategoria,
 		this.titulo,
 		this.assunto,
 		this.dataPostagem,
-		this.ativo});
+		this.ativo,
+		this.nomeCategoria});
 
   PostModel.fromJson(Map<String, dynamic> json) {
-	idPost = json['id_post'];
-	idUsuario = json['id_usuario'];
-	idBlog = json['id_blog'];
-	idCategoria = json['id_categoria'];
-	titulo = json['titulo'];
-	assunto = json['assunto'];
-	dataPostagem = json['data_postagem'];
-	ativo = json['ativo'];
+	idPost = int.parse(json['id_post'] ?? '0');
+	idCategoria = int.parse(json['id_categoria'] ?? '0');
+	titulo = json['titulo'] ?? '';
+	assunto = json['assunto'] ?? '';
+	dataPostagem = json['data_postagem'] ?? '';
+	ativo = json['ativo'] == 0;
+	nomeCategoria = json['nome_categoria'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['id_post'] = this.idPost;
-	data['id_usuario'] = this.idUsuario;
-	data['id_blog'] = this.idBlog;
 	data['id_categoria'] = this.idCategoria;
 	data['titulo'] = this.titulo;
 	data['assunto'] = this.assunto;
 	data['data_postagem'] = this.dataPostagem;
 	data['ativo'] = this.ativo;
+	data['nome_categoria'] = this.nomeCategoria;
 	return data;
   }
 
   @override
   String toString() {
-    return 'PostModel{idPost: $idPost, idUsuario: $idUsuario, idBlog: $idBlog, idCategoria: $idCategoria, titulo: $titulo, assunto: $assunto, dataPostagem: $dataPostagem, ativo: $ativo}';
+    return 'PostModel{idPost: $idPost, idCategoria: $idCategoria, titulo: $titulo, assunto: $assunto, dataPostagem: $dataPostagem, ativo: $ativo, nomeCategoria: $nomeCategoria}';
   }
 }
