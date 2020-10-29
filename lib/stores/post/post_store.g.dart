@@ -24,10 +24,46 @@ mixin _$PostStore on _PostStore, Store {
     });
   }
 
+  final _$idCategoryAtom = Atom(name: '_PostStore.idCategory');
+
+  @override
+  int get idCategory {
+    _$idCategoryAtom.reportRead();
+    return super.idCategory;
+  }
+
+  @override
+  set idCategory(int value) {
+    _$idCategoryAtom.reportWrite(value, super.idCategory, () {
+      super.idCategory = value;
+    });
+  }
+
+  final _$createAsyncAction = AsyncAction('_PostStore.create');
+
+  @override
+  Future<bool> create() {
+    return _$createAsyncAction.run(() => super.create());
+  }
+
+  final _$_PostStoreActionController = ActionController(name: '_PostStore');
+
+  @override
+  void setId(int id) {
+    final _$actionInfo =
+        _$_PostStoreActionController.startAction(name: '_PostStore.setId');
+    try {
+      return super.setId(id);
+    } finally {
+      _$_PostStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-posts: ${posts}
+posts: ${posts},
+idCategory: ${idCategory}
     ''';
   }
 }
