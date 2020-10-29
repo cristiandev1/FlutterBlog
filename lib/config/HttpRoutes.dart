@@ -6,4 +6,5 @@ class HttpRoutes{
   static const String userData = "usuario/dados";
 
   static const String postCreate = "post/cadastrar";
+  static const String getPosts = "post/getPosts";
 }

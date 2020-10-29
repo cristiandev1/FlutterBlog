@@ -46,6 +46,13 @@ mixin _$PostStore on _PostStore, Store {
     return _$createAsyncAction.run(() => super.create());
   }
 
+  final _$getPostsAsyncAction = AsyncAction('_PostStore.getPosts');
+
+  @override
+  Future<List<PostModel>> getPosts() {
+    return _$getPostsAsyncAction.run(() => super.getPosts());
+  }
+
   final _$_PostStoreActionController = ActionController(name: '_PostStore');
 
   @override

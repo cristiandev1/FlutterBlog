@@ -1,5 +1,6 @@
 import 'package:flutter_blog/config/HttpRoutes.dart';
 import 'package:flutter_blog/interfaces/ClientHttpInterface.dart';
+import 'package:flutter_blog/models/post_model.dart';
 import 'package:flutter_blog/stores/user/user_store.dart';
 import 'package:get_it/get_it.dart';
 
@@ -30,4 +31,28 @@ class PostRepository{
 
 	return false;
   }
+
+  Future<List<PostModel>> getPosts()async{
+	List<PostModel> listPost = List();
+    List response = await _clientHttp.request(
+		uri: HttpRoutes.getPosts,
+	  	method: HttpMethods.post,
+		data: {
+		  "usuario":{
+			"id":_user.user.id,
+		  },
+		}
+	);
+
+    if(response != null){
+      for(Map<String, dynamic> post in response){
+        listPost.add(PostModel.fromJson(post));
+	  }
+
+      return listPost;
+	}
+
+    return null;
+  }
+
 }
