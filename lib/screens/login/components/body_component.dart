@@ -43,7 +43,7 @@ class BodyComponent extends StatelessWidget {
 			  onpress: () async{
 			    bool res = await _loginStore.login();
 			    if(res){
-				  print("aqui");
+				  Navigator.of(context).pushReplacementNamed(AppRoutes.splashScreen);
 				}
 			  },
 			),

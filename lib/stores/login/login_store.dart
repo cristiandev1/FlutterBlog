@@ -29,7 +29,6 @@ abstract class _LoginStore with Store{
 
   @action
   Future<bool> login() async{
-    password = md5.convert(utf8.encode(password)).toString();
     _userGlobal.user = await _loginRepository.login(email: email, senha: password,);
     if(_userGlobal.user != null){
       return true;
