@@ -132,9 +132,8 @@ class _PostsState extends State<Posts> {
 		  ),
 		  BottomNavigationBarItem(
 			title: Text('Categorias'),
-			icon: Icon(Icons.search),
+			icon: Icon(Icons.apps),
 		  ),
-
 		],
 	  ),
 	);

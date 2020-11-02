@@ -53,6 +53,13 @@ mixin _$PostStore on _PostStore, Store {
     return _$getPostsAsyncAction.run(() => super.getPosts());
   }
 
+  final _$searchPostAsyncAction = AsyncAction('_PostStore.searchPost');
+
+  @override
+  Future<void> searchPost() {
+    return _$searchPostAsyncAction.run(() => super.searchPost());
+  }
+
   final _$_PostStoreActionController = ActionController(name: '_PostStore');
 
   @override

@@ -55,7 +55,7 @@ class DefaultInput extends StatelessWidget {
 		  hintText: maskInputFormatter != null ? maskInputFormatter : text,
 		  prefixIcon: prefixIcon == null
 			  ? null
-			  : Icon(prefixIcon, size: 18, color: Colors.grey),
+			  : Icon(prefixIcon, size: 18, color: Colors.grey[800]),
 		);
 		break;
 	}

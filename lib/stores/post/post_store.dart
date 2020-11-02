@@ -11,7 +11,10 @@ class PostStore = _PostStore with _$PostStore;
 
 abstract class _PostStore with Store{
 
+  TextEditingController controllerSearch = TextEditingController();
+
   final _postRepository = GetIt.I.get<PostRepository>();
+
   final _user = GetIt.I.get<UserStore>();
 
   @observable
@@ -47,4 +50,17 @@ abstract class _PostStore with Store{
 
   @action
   Future<List<PostModel>> getPosts() async => _user.user.postagens = await _postRepository.getPosts();
+
+  @action
+  Future<void> searchPost() async{
+    List<PostModel> listFiltered = List();
+
+    for(var item in posts){
+      if(item.titulo.toLowerCase().contains(controllerSearch.text.toLowerCase())){
+        listFiltered.add(item);
+      }
+    }
+
+    posts = listFiltered;
+  }
 }
