@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/screens/categories/categories.dart';
 import 'package:flutter_blog/screens/constants.dart';
 import 'package:flutter_blog/screens/posts/components/body_component.dart';
 import 'package:flutter_blog/screens/posts/components/bottom_navigation_bar.dart';
@@ -23,10 +24,16 @@ class _PostsState extends State<Posts> {
   final _categoryStore = GetIt.I.get<CategoryStore>();
   final _postStore = GetIt.I.get<PostStore>();
 
+  int _currentIndex = 0;
+  static List<Widget> _widgetOptions = <Widget>[
+	BodyComponentPost(),
+	Categories(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-	  appBarTitle: "Postagens",
+	  appBarTitle: _currentIndex == 0 ? "Postagens" : "Categorias",
 	  action1: IconButton(
 		icon: Icon(FontAwesomeIcons.plusCircle, size: 20, color: Colors.white,),
 		onPressed: (){
@@ -108,8 +115,28 @@ class _PostsState extends State<Posts> {
 		  ));
 		},
 	  ),
-	  body: BodyComponentPost(),
-	  bottomNavigationBar: BottomNavigationBarComponent(),
+	  body: _widgetOptions.elementAt(_currentIndex),
+	  bottomNavigationBar:  BottomNavigationBar(
+		currentIndex: _currentIndex,
+		type: BottomNavigationBarType.fixed,
+		backgroundColor: kPrimaryColor,
+		selectedItemColor: Colors.white,
+		unselectedItemColor: Colors.white.withOpacity(.60),
+		selectedFontSize: 14,
+		unselectedFontSize: 14,
+		onTap: (value){setState(() => _currentIndex = value);},
+		items: [
+		  BottomNavigationBarItem(
+			title: Text('Postagens'),
+			icon: Icon(Icons.favorite),
+		  ),
+		  BottomNavigationBarItem(
+			title: Text('Categorias'),
+			icon: Icon(Icons.search),
+		  ),
+
+		],
+	  ),
 	);
   }
 }

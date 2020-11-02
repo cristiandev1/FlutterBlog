@@ -7,4 +7,6 @@ class HttpRoutes{
 
   static const String postCreate = "post/cadastrar";
   static const String getPosts = "post/getPosts";
+
+  static const String getCategories = "categoria/listar";
 }

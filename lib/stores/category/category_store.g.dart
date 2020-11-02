@@ -39,11 +39,35 @@ mixin _$CategoryStore on _CategoryStore, Store {
     });
   }
 
+  final _$categoriesAtom = Atom(name: '_CategoryStore.categories');
+
+  @override
+  List<CategoryModel> get categories {
+    _$categoriesAtom.reportRead();
+    return super.categories;
+  }
+
+  @override
+  set categories(List<CategoryModel> value) {
+    _$categoriesAtom.reportWrite(value, super.categories, () {
+      super.categories = value;
+    });
+  }
+
+  final _$getCategoriesAsyncAction =
+      AsyncAction('_CategoryStore.getCategories');
+
+  @override
+  Future<List<CategoryModel>> getCategories() {
+    return _$getCategoriesAsyncAction.run(() => super.getCategories());
+  }
+
   @override
   String toString() {
     return '''
 categoryList: ${categoryList},
-category: ${category}
+category: ${category},
+categories: ${categories}
     ''';
   }
 }

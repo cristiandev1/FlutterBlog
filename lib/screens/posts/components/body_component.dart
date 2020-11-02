@@ -4,6 +4,7 @@ import 'package:flutter_blog/config/AppRoutes.dart';
 import 'package:flutter_blog/stores/user/user_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
 class BodyComponentPost extends StatefulWidget {
@@ -46,8 +47,8 @@ class _BodyComponentPostState extends State<BodyComponentPost> {
 							  FlatButton(
 								child: const Text('DETALHES'),
 								onPressed: () {
-								  Future.delayed(Duration(seconds: 3),(){
-									Navigator.of(context).pushReplacementNamed(AppRoutes.post);
+								  Future.delayed(Duration(seconds: 2),(){
+									Navigator.of(context).pushReplacementNamed(AppRoutes.post, arguments: _user.user.postagens[index]);
 								  });
 								},
 							  ),
