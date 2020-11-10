@@ -34,7 +34,7 @@ class _PostsState extends State<Posts> {
   Widget build(BuildContext context) {
     return DefaultScaffold(
 	  appBarTitle: _currentIndex == 0 ? "Postagens" : "Categorias",
-	  action1: IconButton(
+	  action1: _currentIndex == 0 ? IconButton(
 		icon: Icon(FontAwesomeIcons.plusCircle, size: 20, color: Colors.white,),
 		onPressed: (){
 		  _postStore.controllerDescription.text = '';
@@ -46,7 +46,7 @@ class _PostsState extends State<Posts> {
 			content: Column(
 			  mainAxisSize: MainAxisSize.min,
 			  children: [
-			    DialogInput(
+				DialogInput(
 				  textCapitalization: TextCapitalization.none,
 				  label: "Informe o titulo",
 				  controller: _postStore.controllerTitle,
@@ -95,20 +95,56 @@ class _PostsState extends State<Posts> {
 					  textColor: Colors.white,
 					  child: Text('Cadastrar'),
 					  onPressed: ()async{
-					    bool res = await _postStore.create();
-					    if(res){
-					      Navigator.pop(context);
-						}else{
-						  Navigator.pop(context);
-					      Get.snackbar(
-							  'Postagem',
-							  'Para realizar o cadastro é necessário preencher os dados',
-							  backgroundColor: Colors.white,
+
+					    if(_postStore.controllerTitle.text == null || _postStore.controllerTitle.text == '' ||
+							_postStore.controllerDescription.text == null || _postStore.controllerDescription.text == ''
+						){
+						  Get.snackbar(
+							'Postagem',
+							'Para realizar o cadastro é necessário preencher os dados',
+							backgroundColor: Colors.white,
 						  );
+						}
+
+						bool res = await _postStore.create();
+						if(res){
+						  Navigator.pop(context);
 						}
 					  },
 					),
 				  ],
+				),
+			  ],
+			),
+		  ));
+		},
+	  ) : IconButton(
+		icon: Icon(FontAwesomeIcons.plusCircle, size: 20, color: Colors.white,),
+		onPressed: (){
+
+		  _categoryStore.controllerName.text = '';
+
+		  Get.dialog(AlertDialog(
+			title: Text('Cadastrar Categoria'),
+			content: Column(
+			  mainAxisSize: MainAxisSize.min,
+			  children: [
+				DialogInput(
+				  textCapitalization: TextCapitalization.none,
+				  label: "Informe o nome",
+				  controller: _categoryStore.controllerName,
+				),
+				SizedBox(height: 20,),
+				RaisedButton(
+				  color: kPrimaryColor,
+				  textColor: Colors.white,
+				  child: Text('Cadastrar'),
+				  onPressed: ()async{
+				    bool res = await _categoryStore.create();
+				    if(res){
+				      Navigator.pop(context);
+					}
+				  },
 				),
 			  ],
 			),

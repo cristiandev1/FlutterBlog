@@ -17,14 +17,16 @@ abstract class _PostStore with Store{
 
   final _user = GetIt.I.get<UserStore>();
 
-  @observable
-  List<PostModel> posts = List();
 
   @observable
   int idCategory;
 
   @action
   void setId(int id) => idCategory = id;
+
+
+  @observable
+  List<PostModel> postsFiltered = List();
 
   TextEditingController controllerTitle = TextEditingController();
   TextEditingController controllerDescription = TextEditingController();
@@ -39,7 +41,7 @@ abstract class _PostStore with Store{
       );
 
       if(create){
-        await getPosts();
+        postsFiltered = await getPosts();
         return true;
       }
 
@@ -55,12 +57,13 @@ abstract class _PostStore with Store{
   Future<void> searchPost() async{
     List<PostModel> listFiltered = List();
 
-    for(var item in posts){
+    for(var item in _user.user.postagens){
       if(item.titulo.toLowerCase().contains(controllerSearch.text.toLowerCase())){
         listFiltered.add(item);
       }
     }
 
-    posts = listFiltered;
+    postsFiltered = listFiltered;
+
   }
 }

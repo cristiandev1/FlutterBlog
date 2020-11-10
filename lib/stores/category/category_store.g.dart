@@ -9,6 +9,21 @@ part of 'category_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CategoryStore on _CategoryStore, Store {
+  final _$categoryModelAtom = Atom(name: '_CategoryStore.categoryModel');
+
+  @override
+  CategoryModel get categoryModel {
+    _$categoryModelAtom.reportRead();
+    return super.categoryModel;
+  }
+
+  @override
+  set categoryModel(CategoryModel value) {
+    _$categoryModelAtom.reportWrite(value, super.categoryModel, () {
+      super.categoryModel = value;
+    });
+  }
+
   final _$categoryListAtom = Atom(name: '_CategoryStore.categoryList');
 
   @override
@@ -39,18 +54,19 @@ mixin _$CategoryStore on _CategoryStore, Store {
     });
   }
 
-  final _$categoriesAtom = Atom(name: '_CategoryStore.categories');
+  final _$categoriesFilteredAtom =
+      Atom(name: '_CategoryStore.categoriesFiltered');
 
   @override
-  List<CategoryModel> get categories {
-    _$categoriesAtom.reportRead();
-    return super.categories;
+  List<CategoryModel> get categoriesFiltered {
+    _$categoriesFilteredAtom.reportRead();
+    return super.categoriesFiltered;
   }
 
   @override
-  set categories(List<CategoryModel> value) {
-    _$categoriesAtom.reportWrite(value, super.categories, () {
-      super.categories = value;
+  set categoriesFiltered(List<CategoryModel> value) {
+    _$categoriesFilteredAtom.reportWrite(value, super.categoriesFiltered, () {
+      super.categoriesFiltered = value;
     });
   }
 
@@ -62,12 +78,28 @@ mixin _$CategoryStore on _CategoryStore, Store {
     return _$getCategoriesAsyncAction.run(() => super.getCategories());
   }
 
+  final _$createAsyncAction = AsyncAction('_CategoryStore.create');
+
+  @override
+  Future<bool> create() {
+    return _$createAsyncAction.run(() => super.create());
+  }
+
+  final _$searchCategoryAsyncAction =
+      AsyncAction('_CategoryStore.searchCategory');
+
+  @override
+  Future<void> searchCategory() {
+    return _$searchCategoryAsyncAction.run(() => super.searchCategory());
+  }
+
   @override
   String toString() {
     return '''
+categoryModel: ${categoryModel},
 categoryList: ${categoryList},
 category: ${category},
-categories: ${categories}
+categoriesFiltered: ${categoriesFiltered}
     ''';
   }
 }

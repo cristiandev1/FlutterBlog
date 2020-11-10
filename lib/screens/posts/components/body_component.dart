@@ -47,7 +47,7 @@ class _BodyComponentPostState extends State<BodyComponentPost> {
 			  return ListView.builder(
 				shrinkWrap: true,
 				physics: NeverScrollableScrollPhysics(),
-				itemCount:	_postStore.posts.length,
+				itemCount:	_postStore.postsFiltered.length,
 				itemBuilder: (_,index){
 				  return InkWell(
 					child: Card(
@@ -58,8 +58,8 @@ class _BodyComponentPostState extends State<BodyComponentPost> {
 
 						  ListTile(
 							//leading: Icon(FontAwesomeIcons.info, size: 50,),
-							title: Text('${_postStore.posts[index].titulo}', style: TextStyle(fontSize: 20),),
-							subtitle: Text('${_postStore.posts[index].assunto}', style: TextStyle(fontSize: 16),),
+							title: Text('${_postStore.postsFiltered[index].titulo}', style: TextStyle(fontSize: 20),),
+							subtitle: Text('${_postStore.postsFiltered[index].assunto}', style: TextStyle(fontSize: 16),),
 						  ),
 						  Row(
 							mainAxisAlignment: MainAxisAlignment.end,
@@ -67,9 +67,7 @@ class _BodyComponentPostState extends State<BodyComponentPost> {
 							  FlatButton(
 								child: const Text('DETALHES'),
 								onPressed: () {
-								  Future.delayed(Duration(seconds: 2),(){
-									Navigator.of(context).pushReplacementNamed(AppRoutes.post, arguments: _postStore.posts[index]);
-								  });
+								  Navigator.of(context).pushReplacementNamed(AppRoutes.post, arguments: _postStore.postsFiltered[index]);
 								},
 							  ),
 							  const SizedBox(width: 8),

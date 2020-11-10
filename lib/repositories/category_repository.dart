@@ -32,4 +32,21 @@ class CategoryRepository{
     return categories;
   }
 
+  Future<bool> categoryRegister({String name})async{
+    bool response = await _clientHttp.request(
+      uri: HttpRoutes.registerCategory,
+      method: HttpMethods.post,
+      data: {
+        "usuario":{
+          "id": _user.user.id,
+        },
+        "nome": name,
+      }
+    );
+
+    if(response != null) return response;
+
+    return false;
+  }
+
 }

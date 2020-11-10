@@ -21,7 +21,8 @@ abstract class _SplashStore with Store{
   Future<bool> splash()async{
     _userStore.user = await _splashRepository.splash(idUser: 1);
     if(_userStore.user != null){
-      _postStore.posts = _userStore.user.postagens;
+      _postStore.postsFiltered = _userStore.user.postagens;
+      _categoryStore.categoriesFiltered = _userStore.user.categorias;
       await _categoryStore.getCategories();
       return true;
     }else{

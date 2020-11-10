@@ -9,4 +9,5 @@ class HttpRoutes{
   static const String getPosts = "post/getPosts";
 
   static const String getCategories = "categoria/listar";
+  static const String registerCategory = "categoria/cadastrar";
 }

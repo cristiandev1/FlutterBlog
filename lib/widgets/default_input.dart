@@ -38,7 +38,7 @@ class DefaultInput extends StatelessWidget {
 		decoration = InputDecoration(
 		  prefixIcon: prefixIcon == null
 			  ? null
-			  : Icon(prefixIcon, size: 18, color: Colors.grey[200]),
+			  : Icon(prefixIcon, size: 18, color: Colors.grey),
 		  hintText: maskInputFormatter != null ? maskInputFormatter : text,
 		  filled: true,
 		  fillColor: Colors.grey[200],
