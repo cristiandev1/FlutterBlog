@@ -6,9 +6,9 @@ import 'package:get_it/get_it.dart';
 class SplashRepository{
   final _clientHttp = GetIt.I.get<IClientHttp>();
 
-  Future<UserGlobalModel> splash({int idUser})async{
+  Future<dynamic> splash({int idUser})async{
     UserGlobalModel user;
-    Map<String, dynamic> response = await _clientHttp.request(
+    dynamic response = await _clientHttp.request(
 	  uri: HttpRoutes.splash,
 	  method: HttpMethods.post,
 	  data: {
@@ -18,11 +18,16 @@ class SplashRepository{
 	  }
 	);
 
-    if(response != null){
-	  user = UserGlobalModel.fromJson(response);
-	  return user;
+
+    if(response is bool){
+      return false;
+	}else if(response is Map){
+	  if(response != null){
+		user = UserGlobalModel.fromJson(response);
+		return user;
+	  }
 	}
 
-    return null;
+
   }
 }

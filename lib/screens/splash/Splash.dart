@@ -19,11 +19,11 @@ class _SplashState extends State<Splash> {
 	splashStore.splash().then((result) {
 	  if(result){
 		Future.delayed(Duration(seconds: 2),(){
-		  Navigator.of(context).pushReplacementNamed(AppRoutes.posts);
+		  Navigator.of(context).pushNamed(AppRoutes.posts);
 		});
 	  }else{
 		Future.delayed(Duration(seconds: 2),(){
-		  Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+		  Navigator.of(context).pushNamed(AppRoutes.login);
 		});
 	  }
 	});

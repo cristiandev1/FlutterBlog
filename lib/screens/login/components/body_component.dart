@@ -39,12 +39,19 @@ class BodyComponent extends StatelessWidget {
 			  onChanged: (value) => _loginStore.setPassword(value),
 			),
 			RoundedButton(
+			  text: "CADASTRE-SE",
+			  onpress: () async{
+			    Navigator.of(context).pushNamed(AppRoutes.register);
+			  },
+			),
+			RoundedButton(
 			  text: "ENTRAR",
 			  onpress: () async{
-			    bool res = await _loginStore.login();
-			    if(res){
-				  Navigator.of(context).pushReplacementNamed(AppRoutes.splashScreen);
+				bool res = await _loginStore.login();
+				if(res){
+				  Navigator.of(context).pushNamed(AppRoutes.posts);
 				}
+
 			  },
 			),
 			SizedBox(height: size.height * 0.03),

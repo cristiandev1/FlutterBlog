@@ -4,15 +4,22 @@ import 'package:flutter_blog/widgets/text_field_container.dart';
 
 class RoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
+  final TextEditingController controller;
   const RoundedPasswordField({
 	Key key,
-	this.onChanged,
+	this.onChanged, this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 	return TextFieldContainer(
-	  child: TextField(
+	  child: TextFormField(
+		validator: (value){
+		  if(value.isEmpty){
+			return 'Campo obrigatório';
+		  }
+		},
+		controller: controller,
 		obscureText: true,
 		onChanged: onChanged,
 		cursorColor: kPrimaryColor,

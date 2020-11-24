@@ -19,14 +19,16 @@ abstract class _SplashStore with Store{
 
   @action
   Future<bool> splash()async{
-    _userStore.user = await _splashRepository.splash(idUser: 1);
-    if(_userStore.user != null){
+    var user = await _splashRepository.splash(idUser: 4);
+    if(user is bool){
+      return user;
+    }else{
+      _userStore.user = user;
       _postStore.postsFiltered = _userStore.user.postagens;
       _categoryStore.categoriesFiltered = _userStore.user.categorias;
       await _categoryStore.getCategories();
       return true;
-    }else{
-      return false;
     }
+
   }
 }

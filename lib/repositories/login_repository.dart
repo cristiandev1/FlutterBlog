@@ -19,7 +19,7 @@ class LoginRepository{
 	);
 
     if(response != null){
-      user = UserGlobalModel.fromJson(response);
+     return  user = UserGlobalModel.fromJson(response);
 	}
 
     return null;

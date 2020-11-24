@@ -6,18 +6,25 @@ import 'package:flutter_blog/widgets/text_field_container.dart';
 class RoundedInputField extends StatelessWidget {
   final String hintText;
   final IconData icon;
+  final TextEditingController controller;
   final ValueChanged<String> onChanged;
   const RoundedInputField({
 	Key key,
 	this.hintText,
 	this.icon = Icons.person,
-	this.onChanged,
+	this.onChanged, this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 	return TextFieldContainer(
-	  child: TextField(
+	  child: TextFormField(
+		validator: (value){
+		  if(value.isEmpty){
+		    return 'Campo obrigatório';
+		  }
+		},
+		controller: controller,
 		onChanged: onChanged,
 		cursorColor: kPrimaryColor,
 		decoration: InputDecoration(
